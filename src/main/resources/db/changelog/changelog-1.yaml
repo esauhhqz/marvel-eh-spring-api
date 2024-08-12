@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Edwin Henriquez
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: busqueda
+      changes:
+        - createTable:
+            tableName: busqueda
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: action
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Edwin Henriquez
+      changes:
+        - insert:
+            tableName: busqueda
+            columns:
+              - column:
+                  name: user
+                  value: "John"
+              - column:
+                  name: action
+                  value: "Alguna busqueda"
+              - column:
+                  name: url
+                  value: "Alguna url"
